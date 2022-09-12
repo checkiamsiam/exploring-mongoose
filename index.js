@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 mongoose
-  .connect(process.env.DB_URI)
+  .connect(process.env.DB_URI_LOCAL)
   .then(() => {
     app.listen(port, () => {
       console.log(`server is running at port ${port} with db connection`.yellow.bold);
