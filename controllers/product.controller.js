@@ -1,5 +1,5 @@
 const ProductModel = require("../models/product.model");
-const { postProductService, deleteProductService } = require("../services/product.service");
+const { postProductService, deleteProductService, updateProductService } = require("../services/product.service");
 
 module.exports.getProductController = async (req, res, next) => {
   try {
@@ -12,23 +12,12 @@ module.exports.getProductController = async (req, res, next) => {
       data: result,
     });
   } catch (error) {
-    next(error)
+    next(error);
   }
 };
 module.exports.postProductController = async (req, res, next) => {
   try {
-    const result = await postProductService(req.body);
-    res.send({
-      success: true,
-      message: "data insert successful",
-      insertedData: result,
-    });
-  } catch (error) {
-    next(error)
-  }
-};
-module.exports.updateProductController = async (req, res, next) => {
-  try {
+    const result = await postProductService(req);
     res.send({
       success: true,
       message: "data insert successful",
@@ -38,9 +27,21 @@ module.exports.updateProductController = async (req, res, next) => {
     next(error);
   }
 };
+module.exports.updateProductController = async (req, res, next) => {
+  try {
+    const result = await updateProductService({ req, next });
+    res.send({
+      success: true,
+      message: "data update successful",
+      updatedDoc: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 module.exports.deleteProductController = async (req, res, next) => {
   try {
-    const result = await deleteProductService(req.params.id)
+    const result = await deleteProductService(req);
     res.send({
       success: true,
       result,
