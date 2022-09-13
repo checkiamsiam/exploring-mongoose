@@ -33,6 +33,9 @@ app.all("*", (req, res) => {
 
 app.use((err, req, res) => {
   if (err) {
-    res.send(`there is an error ${err}`);
+    res.send({
+      success: false,
+      message: err.message,
+    });
   }
 });

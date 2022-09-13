@@ -25,7 +25,7 @@ const productSchema = mongoose.Schema(
       required: [true, "filed must be require"],
       // enum : ["kg" , "peace" , "liter"] // predefine value (er baire kono value accept kobe na)
       enum: {
-        value: ["kg", "peace", "liter"],
+        values: ["kg", "peace", "liter"],
         message: "unit value must be kg/peace/liter", //error msg er jonno
       },
     },
@@ -49,7 +49,7 @@ const productSchema = mongoose.Schema(
       type: String,
       required: [true, "filed must be require"],
       enum: {
-        value: ["in-stock", "out-of-stock"],
+        values: ["in-stock", "out-of-stock"],
         message: `status can't be {VALUE}`,
       },
     },
@@ -61,11 +61,9 @@ const productSchema = mongoose.Schema(
       {
         name: {
           type: String,
-          required: true,
         },
         _id: {
           type: mongoose.Schema.Types.ObjectId,
-          required: true,
         },
       },
     ],
